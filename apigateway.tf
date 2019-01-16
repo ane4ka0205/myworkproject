@@ -30,7 +30,7 @@ resource "aws_api_gateway_intergration" "Myintegration" {
   timeout_milliseconds = 29000
 }
 
-resources "aws_api_gateway_deployment"{
+resource "aws_api_gateway_deployment" {
   rest_api_id = "${aws_api_gateway_rest_api.mygw.id}"
   stage_name = "dev"
   
