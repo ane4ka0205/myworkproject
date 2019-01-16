@@ -1,12 +1,12 @@
 resource "aws_cloudtrail" "mytrail"  {
   name = "mytrail"
-  s3_bucket_name = "mytrail_bucket_test1"
+  s3_bucket_name = "mytrail-bucket-test1"
   s3_key_prefix = "prefix"
   include_global_service_events = false
 }
 
-resource "aws_s3_bucket" "mytrail_bucket_test1" {
-  bucket = "mytrail_bucket_test1"
+resource "aws_s3_bucket" "mytrail-bucket-test1" {
+  bucket = "mytrail-bucket-test1"
   acl = "private"
 
   policy = <<POLICY
@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "mytrail_bucket_test1" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:GetBucketAcl",
-            "Resource": "arn:aws:s3:::mytrail_bucket_test1"
+            "Resource": "arn:aws:s3:::mytrail-bucket-test1"
         },
         {
             "Sid": "AWSCloudTrailWrite",
@@ -29,7 +29,7 @@ resource "aws_s3_bucket" "mytrail_bucket_test1" {
               "Service": "cloudtrail.amazonaws.com"
             },
             "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::mytrail_bucket_test1/*",
+            "Resource": "arn:aws:s3:::mytrail-bucket-test1/*",
             "Condition": {
                 "StringEquals": {
                     "s3:x-amz-acl": "bucket-owner-full-control"
