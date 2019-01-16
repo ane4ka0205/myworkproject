@@ -20,13 +20,21 @@ resource "aws_api_gateway_method" "Mymethod" {
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_intergration" "Myintegration" {
+resource "aws_api_gateway_integration" "Myintegration" {
   rest_api_id = "${aws_api_gateway_rest_api.mygw.id}"
   resource_id = "${aws_api_gateway_resource.myresource.id}"
   http_method = "${aws_api_gateway_method.Mymethod.http_method}"
   type = "MOCK"
-  cache_key_parameters = ["method.request.path.param"]
-  cache_namespace = "test"
-  timeout_milliseconds = 29000
 }
+
+resource "aws_api_gateway_deployment" "mydeploy" {
+  depends_on = ["aws_api_gateway_integration.Myintegration"]
+
+  rest_api_id = "${aws_api_gateway_rest_api.mygw.id}"
+  stage_name = "dev"
+
+  variables = {
+    "answer" = "42"
+  }
+}  
 
