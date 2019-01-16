@@ -22,7 +22,7 @@ resource "aws_api_gateway_method" "Mymethod" {
 
 resource "aws_api_gateway_intergration" "Myintegration" {
   rest_api_id = "${aws_api_gateway_rest_api.mygw.id}"
-  resource_id = "${aws_api_gateway_resource.Myresource.id}"
+  resource_id = "${aws_api_gateway_resource.myresource.id}"
   http_method = "${aws_api_gateway_method.Mymethod.http_method}"
   type = "MOCK"
 }
