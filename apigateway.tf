@@ -25,6 +25,13 @@ resource "aws_api_gateway_intergration" "Myintegration" {
   resource_id = "${aws_api_gateway_resource.myresource.id}"
   http_method = "${aws_api_gateway_method.Mymethod.http_method}"
   type = "MOCK"
+  cache_key_parameters = ["method.request.path.param"]
+  cache_namespace = "test"
+  timeout_milliseconds = 29000
+
+  request_parameters = {
+    "integration.request.header.X-Authorization" = "'static'"
+  }
 }
 
 resource "aws_api_gateway_deployment" "Mydeploy" {
