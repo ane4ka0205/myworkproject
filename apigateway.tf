@@ -34,8 +34,6 @@ resource "aws_api_gateway_intergration" "Myintegration" {
   }
 }
 
-resource "aws_api_gateway_deployment" "Mydeploy" {
-  depends_on = ["aws_api_gateway_integration.Myintegration"]
 
   rest_api_id = "${aws_api_gateway_rest_api.mygw.id}"
   stage_name = "dev"
