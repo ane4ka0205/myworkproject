@@ -8,7 +8,7 @@ resource "aws_api_gateway_rest_api" "mygw" {
 }
 
 resource "aws_api_gateway_resource" "Myresource"{
-  rest_api_d = "${aws_api_gateway_rest_api.mygw.id}"
+  rest_api_id = "${aws_api_gateway_rest_api.mygw.id}"
   parent_id = "${aws_api_gateway_rest_api.mygw.root_resource_id}"
   path_part = "myresource"
 }
