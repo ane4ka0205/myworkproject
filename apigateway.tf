@@ -28,13 +28,9 @@ resource "aws_api_gateway_intergration" "Myintegration" {
   cache_key_parameters = ["method.request.path.param"]
   cache_namespace = "test"
   timeout_milliseconds = 29000
-
-  request_parameters = {
-    "integration.request.header.X-Authorization" = "'static'"
-  }
 }
 
-
+resources "aws_api_gateway_deployment"{
   rest_api_id = "${aws_api_gateway_rest_api.mygw.id}"
   stage_name = "dev"
   
